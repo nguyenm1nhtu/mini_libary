@@ -8,6 +8,7 @@ module.exports = {
         return res.status(response.status).json(response);
     },
 
+    //error res
     errorResponse: (res, status, message, errors = {}) => {
         const response = {
             status,
