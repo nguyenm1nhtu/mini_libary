@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const upload = require('../utils/multer');
 
 const authController = require('../controllers/auth.controller');
 const CategoryController = require('../controllers/category.controller');
@@ -11,7 +12,6 @@ const FavouriteController = require('../controllers/favourite.controller');
 // Router cho dang ky, dang nhap, dang xuat
 router.post('/auth/register', authController.register);
 router.post('/auth/login', authController.login);
-router.post('/auth/logout', authController.logout);
 
 // danh muc
 router.post('/categories', CategoryController.create);
@@ -20,9 +20,9 @@ router.put('/categories', CategoryController.update);
 router.delete('/categories', CategoryController.delete);
 
 // sach
-router.post('/books', BookController.create);
+router.post('/books', upload.single('image'), BookController.create);
 router.get('/books', BookController.get);
-router.put('/books', BookController.update);
+router.put('/books', upload.single('image'), BookController.update);
 router.delete('/books', BookController.delete);
 
 // cho muon va tra sach

@@ -5,13 +5,14 @@ module.exports = {
     create: async (req, res) => {
         try {
             const { title, author, category_id, quantity } = req.body;
+            const image = req.file ? `/uploads/${req.file.filename}` : null;
 
             const category = await Category.findByPk(category_id);
             if (!category) {
                 return errorResponse(res, 404, 'Danh mục không tồn tại');
             }
 
-            const book = await Book.create({ title, author, category_id, quantity });
+            const book = await Book.create({ title, author, category_id, quantity, image });
 
             return successResponse(res, 201, 'Tạo sách thành công', book);
         } catch (error) {
@@ -22,6 +23,7 @@ module.exports = {
     update: async (req, res) => {
         try {
             const { book_id, title, author, category_id, quantity } = req.body;
+            const image = req.file ? `/uploads/${req.file.filename}` : null;
 
             const book = await Book.findByPk(book_id);
             if (!book) {
@@ -33,7 +35,7 @@ module.exports = {
                 return errorResponse(res, 404, 'Danh mục không tồn tại');
             }
 
-            await book.update({ title, author, category_id, quantity });
+            await book.update({ title, author, category_id, quantity, image });
 
             return successResponse(res, 200, 'Cập nhật sách thành công', book);
         } catch (error) {
