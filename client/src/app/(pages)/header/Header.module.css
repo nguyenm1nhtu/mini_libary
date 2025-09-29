@@ -1,0 +1,28 @@
+.header {
+    width: 100%;
+    position: fixed;
+    height: var(--header-height);
+    background-color: #fff;
+    top: 0;
+    right: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid #d4d4d4;
+    z-index: 7;
+    padding-left: var(--padding-center);
+    padding-right: var(--padding-center);
+}
+
+.selectTrigger {
+    display: flex;
+    align-items: center;
+    border: none;
+    box-shadow: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.selectItem {
+    padding: 10px;
+}
